@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 139448946939398371}
   m_Layer: 5
   m_Name: BasePlace
-  m_TagString: Untagged
+  m_TagString: BasePlace
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -77,6 +77,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f4bdbd58cb60a4ea49b213db84abb964, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _target: {fileID: 0}
 --- !u!1 &9058383341298789537
 GameObject:
   m_ObjectHideFlags: 0
