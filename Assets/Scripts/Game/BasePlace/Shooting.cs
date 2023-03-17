@@ -13,7 +13,7 @@ namespace Game.BasePlace
             var bullet = Instantiate(bulletPrefab, bulletStartPos,
                 Quaternion.identity, transform.parent);
 
-            bullet.GetComponent<Bullet.Bullet>().SetRotationToTarget(target);
+            bullet.GetComponent<Bullet>().Init(target, 4f, 10f);
         }
 
     }

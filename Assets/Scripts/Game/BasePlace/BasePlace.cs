@@ -1,5 +1,5 @@
-using System;
-using System.Collections;
+using Events.Base;
+using Events.Systems;
 using UnityEngine;
 
 namespace Game.BasePlace
@@ -24,6 +24,12 @@ namespace Game.BasePlace
         {
             _enemySearching = GetComponent<EnemySearching>();
             _shooting = GetComponent<Shooting>();
+        }
+
+        private void OnEnable()
+        {
+            GlobalEventSystem.I.Subscribe(EventNames.Enemy.NonLethalDamaged, OnNonLethalDamaged);
+            GlobalEventSystem.I.Subscribe(EventNames.Enemy.Died, OnEnemyDied);
         }
 
         private void Start()
@@ -52,6 +58,21 @@ namespace Game.BasePlace
         {
             var enemies = _enemySearching.GetAllEnemies();
             return _enemySearching.DefineTarget(enemies);
+        }
+        
+        private void OnNonLethalDamaged(GameEventArgs arg0)
+        {
+            Attack();
+        }
+        
+        private void OnEnemyDied(GameEventArgs arg0)
+        {
+            SearchEnemy();
+        }
+        
+        private void OnDisable()
+        {
+            GlobalEventSystem.I.Unsubscribe(EventNames.Enemy.NonLethalDamaged, OnNonLethalDamaged);
         }
     }
 }

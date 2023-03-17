@@ -5,6 +5,7 @@ namespace Events.Base
     {
         public static readonly string[] TEXT_ALL_NAMES = new[]
         {
+            Enemy.NonLethalDamaged,
             Enemy.Died,
             Data.TotalDamageChanged,
             Data.AttackSpeedChanged,
@@ -16,12 +17,9 @@ namespace Events.Base
             // public static string Started => "started";
         }
 
-        public static class Base
-        {
-        }
-        
         public static class Enemy
         {
+            public static string NonLethalDamaged => "non_lethal_damaged";
             public static string Died => "died";
         }
         
