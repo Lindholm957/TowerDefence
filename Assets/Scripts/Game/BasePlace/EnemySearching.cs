@@ -12,7 +12,7 @@ namespace Game.BasePlace
 
         public GameObject DefineTarget(GameObject[] enemies)
         {
-            var target = new GameObject();
+            var target = enemies[0];
             var minDistance = CalculateDistance(gameObject, enemies[0]);
             
             foreach (var enemy in enemies)
@@ -30,8 +30,8 @@ namespace Game.BasePlace
 
         private float CalculateDistance(GameObject a, GameObject b)
         {
-            var aRectPosition = a.GetComponent<RectTransform>().anchoredPosition;
-            var bRectPosition = b.GetComponent<RectTransform>().anchoredPosition;
+            var aRectPosition = new Vector2(a.transform.position.x, a.transform.position.y);
+            var bRectPosition = new Vector2(b.transform.position.x, b.transform.position.y);
 
             return Vector2.Distance(aRectPosition, bRectPosition);
         }
