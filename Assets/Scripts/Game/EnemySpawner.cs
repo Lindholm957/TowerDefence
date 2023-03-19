@@ -1,3 +1,5 @@
+using Events.Base;
+using Events.Systems;
 using UnityEngine;
 
 namespace Game
@@ -11,6 +13,22 @@ namespace Game
         [SerializeField] private float minSpawnDistance = 860f;
 
         private void Awake()
+        {
+            StartSpawning();
+        }
+        
+        private void OnEnable()
+        {
+            GlobalEventSystem.I.Subscribe(EventNames.Game.Over, OnGameOver);
+            GlobalEventSystem.I.Subscribe(EventNames.Game.Restarted, OnGameRestarted);
+        }
+
+        private void OnGameOver(GameEventArgs arg0)
+        {
+            StopSpawning();
+        }
+        
+        private void OnGameRestarted(GameEventArgs arg0)
         {
             StartSpawning();
         }

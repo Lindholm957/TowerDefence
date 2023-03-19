@@ -660,6 +660,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gameOverPrefab: {fileID: 145789509212863993, guid: 009acc6481909774ab4838a15b4d70c9, type: 3}
+  basePlacePrefab: {fileID: 9058383341184709245, guid: 43779c758d99f7f468a358bc8a864d28, type: 3}
   playground: {fileID: 1271355967}
 --- !u!4 &1085363036
 Transform:
