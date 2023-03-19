@@ -46,13 +46,13 @@ namespace Game.BasePlace
             
             _target = GetTarget();
             
-            // Attack();
+            Attack();
         }
 
         private void Attack()
         {
             _curState = State.Attacking;
-            _shooting.Shoot(_target);
+            _shooting.StartShooting(_target);
         }
 
         private GameObject GetTarget()

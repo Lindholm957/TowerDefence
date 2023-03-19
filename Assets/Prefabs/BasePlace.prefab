@@ -67,8 +67,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bulletPrefab: {fileID: 1967582318502037423, guid: ee3a32ba283e4d74f9a6dc5ffa497570, type: 3}
-  minAttackSpeed: 20
   minDamage: 10
+  maxReloadSpeed: 3
 --- !u!114 &139448946939398371
 MonoBehaviour:
   m_ObjectHideFlags: 0
