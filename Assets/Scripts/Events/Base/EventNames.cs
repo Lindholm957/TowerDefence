@@ -7,9 +7,6 @@ namespace Events.Base
         {
             Enemy.NonLethalDamaged,
             Enemy.Died,
-            Data.TotalDamageChanged,
-            Data.AttackSpeedChanged,
-            Data.AttackSpeedDistanceChanged
         };
 
         public static class Game
@@ -21,13 +18,6 @@ namespace Events.Base
         {
             public static string NonLethalDamaged => "non_lethal_damaged";
             public static string Died => "died";
-        }
-        
-        public static class Data
-        {
-            public static string TotalDamageChanged => "total_damage_changed";
-            public static string AttackSpeedChanged => "attack_speed_changed";
-            public static string AttackSpeedDistanceChanged => "attack_speed_distance_changed";
         }
     }
 }

@@ -1,3 +1,4 @@
+using Game.Data;
 using UnityEngine;
 
 namespace Game.BasePlace
@@ -5,6 +6,10 @@ namespace Game.BasePlace
     public class Shooting : MonoBehaviour
     {
         [SerializeField] private GameObject bulletPrefab;
+        [SerializeField] private float minAttackSpeed = 20f;
+        [SerializeField] private float minDamage = 10f;
+
+        private const float UpgradeIndex = 5f;
 
         public void Shoot(GameObject target)
         {
@@ -12,8 +17,11 @@ namespace Game.BasePlace
 
             var bullet = Instantiate(bulletPrefab, bulletStartPos,
                 Quaternion.identity, transform.parent);
-
-            bullet.GetComponent<Bullet>().Init(target, 20f, 10f);
+            
+            var speed = minAttackSpeed + (PlayerData.I.AttackSpeedLvl * UpgradeIndex);
+            var damage = minDamage * PlayerData.I.TotalDamageLvl;
+            
+            bullet.GetComponent<Bullet>().Init(target, speed, damage);
         }
 
     }

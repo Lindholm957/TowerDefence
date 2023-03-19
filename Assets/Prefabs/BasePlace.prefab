@@ -52,6 +52,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: be064e87b75c4446eb204f86685f9ff1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  minAttackDistance: 100
+  distanceUpgradeValue: 100
 --- !u!114 &4505747919184427190
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -65,6 +67,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bulletPrefab: {fileID: 1967582318502037423, guid: ee3a32ba283e4d74f9a6dc5ffa497570, type: 3}
+  minAttackSpeed: 20
+  minDamage: 10
 --- !u!114 &139448946939398371
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -77,7 +81,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f4bdbd58cb60a4ea49b213db84abb964, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _target: {fileID: 0}
 --- !u!1 &9058383341298789537
 GameObject:
   m_ObjectHideFlags: 0
