@@ -1,3 +1,5 @@
+using System;
+using System.Collections.Generic;
 using Game.Data;
 using UnityEngine;
 
@@ -8,14 +10,27 @@ namespace Game.BasePlace
         [SerializeField] private float minAttackDistance = 200f;
         
         private const float UpgradeIndex = 100f;
+        private Transform _playground;
 
-        public GameObject[] GetAllEnemies()
+        private void Awake()
         {
-            var objects = GameObject.FindGameObjectsWithTag("Enemy");
-            return objects.Length > 0 ? objects : null;
+            _playground = transform.parent;
         }
 
-        public GameObject DefineTarget(GameObject[] enemies)
+        public List<GameObject> GetAllEnemies()
+        {
+            var objects = new List<GameObject>();
+            foreach (Transform child in _playground)
+            {
+                if (child.CompareTag("Enemy"))
+                {
+                    objects.Add(child.gameObject);
+                }
+            }
+            return objects.Count > 0 ? objects : null;
+        }
+
+        public GameObject DefineTarget(List<GameObject> enemies)
         {
             var target = enemies[0];
             var attackDistance = minAttackDistance + (PlayerData.I.AttackDistanceLvl * UpgradeIndex);

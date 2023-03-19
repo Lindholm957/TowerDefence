@@ -708,7 +708,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemyPrefab: {fileID: 7821528905122927960, guid: 4703372263c8e214fadec6d76184098d, type: 3}
   playground: {fileID: 1271355967}
-  repeatRate: 1
+  repeatRate: 0.5
   minSpawnDistance: 860
 --- !u!4 &1136045291
 Transform:
