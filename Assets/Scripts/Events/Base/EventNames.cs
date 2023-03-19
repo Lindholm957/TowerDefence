@@ -5,13 +5,16 @@ namespace Events.Base
     {
         public static readonly string[] TEXT_ALL_NAMES = new[]
         {
+            Game.Over,
+            Game.Restarted,
             Enemy.NonLethalDamaged,
             Enemy.Died,
         };
 
         public static class Game
         {
-            // public static string Started => "started";
+            public static string Over => "over";
+            public static string Restarted => "restarted";
         }
 
         public static class Enemy

@@ -46,7 +46,7 @@ namespace Game.BasePlace
             
             _target = GetTarget();
             
-            Attack();
+            // Attack();
         }
 
         private void Attack()
@@ -65,7 +65,8 @@ namespace Game.BasePlace
         {
             if (col.CompareTag("Enemy"))
             {
-                
+                Destroy(gameObject);
+                GlobalEventSystem.I.SendEvent(EventNames.Game.Over, new GameEventArgs(null));
             }
         }
         

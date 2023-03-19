@@ -1,3 +1,4 @@
+using System;
 using Events.Base;
 using Events.Systems;
 using UnityEngine;
@@ -13,6 +14,16 @@ namespace Game
         private void Awake()
         {
             _target = GameObject.FindGameObjectWithTag("BasePlace");
+        }
+
+        private void OnEnable()
+        {
+            GlobalEventSystem.I.Subscribe(EventNames.Game.Over, OnGameOver);
+        }
+
+        private void OnGameOver(GameEventArgs arg0)
+        {
+            Destroy(gameObject);
         }
 
         private void TakeDamage(float damage)
