@@ -3,6 +3,7 @@ using Events.Systems;
 using Game.Data;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace UI
 {
@@ -16,11 +17,18 @@ namespace UI
         
         private void OnEnable()
         {
+            GlobalEventSystem.I.Subscribe(EventNames.Game.Over, OnGameOver);
             GlobalEventSystem.I.Subscribe(EventNames.Game.Restarted, OnGameRestarted);
         }
-        
+
+        private void OnGameOver(GameEventArgs arg0)
+        {
+            GetComponent<Button>().interactable = false;
+        }
+
         private void OnGameRestarted(GameEventArgs arg)
         {
+            GetComponent<Button>().interactable = true;
             UpdateText();
         }
 
@@ -53,6 +61,7 @@ namespace UI
         
         private void OnDisable()
         {
+            GlobalEventSystem.I.Unsubscribe(EventNames.Game.Over, OnGameOver);
             GlobalEventSystem.I.Unsubscribe(EventNames.Game.Restarted, OnGameRestarted);
         }
     }
