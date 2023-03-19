@@ -1,3 +1,5 @@
+using Events.Base;
+using Events.Systems;
 using Game.Data;
 using TMPro;
 using UnityEngine;
@@ -11,6 +13,16 @@ namespace UI
 
         private int _maxLevelUpgradeLimit = 3;
         private int _curLevelUpgrades = 1;
+        
+        private void OnEnable()
+        {
+            GlobalEventSystem.I.Subscribe(EventNames.Game.Restarted, OnGameRestarted);
+        }
+        
+        private void OnGameRestarted(GameEventArgs arg)
+        {
+            UpdateText();
+        }
 
         public void OnClick()
         {
@@ -37,6 +49,11 @@ namespace UI
                     lvlText.text = PlayerData.I.AttackDistanceLvl.ToString();
                     break;
             }
+        }
+        
+        private void OnDisable()
+        {
+            GlobalEventSystem.I.Unsubscribe(EventNames.Game.Restarted, OnGameRestarted);
         }
     }
 }

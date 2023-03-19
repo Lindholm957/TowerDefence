@@ -8,7 +8,10 @@ namespace Game
     public class GameStateChanger : MonoBehaviour
     {
         [SerializeField] private GameObject gameOverPrefab;
+        [SerializeField] private GameObject basePlacePrefab;
         [SerializeField] private Transform playground;
+
+        private GameObject _curGameOverScreen;
 
         private void OnEnable()
         {
@@ -18,14 +21,19 @@ namespace Game
 
         private void OnGameRestarted(GameEventArgs arg0)
         {
-            Time.timeScale = 1;
-            
+            Destroy(_curGameOverScreen);
+            Instantiate(basePlacePrefab, playground);
         }
 
         private void OnGameOver(GameEventArgs arg)
         {
-            Time.timeScale = 0;
-            Instantiate(gameOverPrefab, playground);
+            _curGameOverScreen = Instantiate(gameOverPrefab, playground);
+        }
+        
+        private void OnDisable()
+        {
+            GlobalEventSystem.I.Unsubscribe(EventNames.Game.Over, OnGameOver);
+            GlobalEventSystem.I.Unsubscribe(EventNames.Game.Restarted, OnGameRestarted);
         }
     }
 }

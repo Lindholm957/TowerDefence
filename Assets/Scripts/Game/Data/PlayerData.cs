@@ -1,4 +1,6 @@
-﻿using UnityEngine;
+﻿using Events.Base;
+using Events.Systems;
+using UnityEngine;
 
 namespace Game.Data
 {
@@ -18,14 +20,24 @@ namespace Game.Data
         {
             I = this;
         }
-        
+
+        private void OnEnable()
+        {
+            GlobalEventSystem.I.Subscribe(EventNames.Game.Restarted, OnGameRestarted);
+        }
+
+        private void OnGameRestarted(GameEventArgs arg)
+        {
+            ResetLvlData();
+        }
+
         public void UpgradeLvlUp(Upgrade.Type type)
         {
             switch (type)
             {
                 case Upgrade.Type.TotalDame:
                     _totalDamageLvl += 1;
-                    break; 
+                    break;
                 case Upgrade.Type.AttackSpeed:
                     _attackSpeedLvl += 1;
                     break;
@@ -35,5 +47,16 @@ namespace Game.Data
             }
         }
 
+        private void ResetLvlData()
+        {
+            _totalDamageLvl = 1;
+            _attackSpeedLvl = 1;
+            _attackDistanceLvl = 1;
+        }
+        
+        private void OnDisable()
+        {
+            GlobalEventSystem.I.Unsubscribe(EventNames.Game.Restarted, OnGameRestarted);
+        }
     }
 }

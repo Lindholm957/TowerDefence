@@ -83,6 +83,7 @@ namespace Game.BasePlace
         private void OnDisable()
         {
             GlobalEventSystem.I.Unsubscribe(EventNames.Enemy.NonLethalDamaged, OnNonLethalDamaged);
+            GlobalEventSystem.I.Unsubscribe(EventNames.Enemy.Died, OnEnemyDied);
         }
     }
 }
