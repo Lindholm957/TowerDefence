@@ -29,7 +29,8 @@ namespace UI
         private void OnGameRestarted(GameEventArgs arg)
         {
             GetComponent<Button>().interactable = true;
-            UpdateText();
+            _curLevelUpgrades = 1;
+            lvlText.text = "1";
         }
 
         public void OnClick()
