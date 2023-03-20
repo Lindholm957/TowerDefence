@@ -3,7 +3,7 @@ using Events.Base;
 using Events.Systems;
 using UnityEngine;
 
-namespace Game.BasePlace
+namespace BasePlace
 {
     [RequireComponent(typeof(EnemySearching))]
     [RequireComponent(typeof(Shooting))]

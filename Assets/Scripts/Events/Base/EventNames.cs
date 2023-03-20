@@ -1,7 +1,4 @@
-﻿
-using Game;
-
-namespace Events.Base
+﻿namespace Events.Base
 {
     public static class EventNames
     {

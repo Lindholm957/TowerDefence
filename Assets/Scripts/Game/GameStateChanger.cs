@@ -1,4 +1,3 @@
-using System;
 using Events.Base;
 using Events.Systems;
 using UnityEngine;

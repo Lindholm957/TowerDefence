@@ -1,6 +1,6 @@
+using Data;
 using Events.Base;
 using Events.Systems;
-using Game.Data;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;

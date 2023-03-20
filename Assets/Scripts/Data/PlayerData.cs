@@ -2,7 +2,7 @@
 using Events.Systems;
 using UnityEngine;
 
-namespace Game.Data
+namespace Data
 {
     public class PlayerData : MonoBehaviour
     {

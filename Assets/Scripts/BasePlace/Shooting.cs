@@ -1,8 +1,8 @@
 using System.Collections;
-using Game.Data;
+using Data;
 using UnityEngine;
 
-namespace Game.BasePlace
+namespace BasePlace
 {
     public class Shooting : MonoBehaviour
     {
@@ -30,7 +30,7 @@ namespace Game.BasePlace
             
             var damage = minDamage * PlayerData.I.TotalDamageLvl;
 
-            bullet.GetComponent<Bullet>().Init(_target, damage);
+            bullet.GetComponent<Bullet.Bullet>().Init(_target, damage);
         }
 
         private IEnumerator DelayBeforeShooting(float delay)

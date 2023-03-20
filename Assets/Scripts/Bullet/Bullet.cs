@@ -1,9 +1,8 @@
-using System;
 using Events.Base;
 using Events.Systems;
 using UnityEngine;
 
-namespace Game
+namespace Bullet
 {
     public class Bullet : MonoBehaviour
     {
@@ -23,7 +22,7 @@ namespace Game
         {
             if (col.CompareTag("Enemy"))
             {
-                col.GetComponent<Enemy>().TakeDamage(_damage);
+                col.GetComponent<Enemy.Enemy>().TakeDamage(_damage);
                 Destroy(gameObject);
             }
         }

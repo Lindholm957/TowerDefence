@@ -1,4 +1,4 @@
-﻿namespace Game.Data
+﻿namespace Data
 {
     public static class Upgrade
     {

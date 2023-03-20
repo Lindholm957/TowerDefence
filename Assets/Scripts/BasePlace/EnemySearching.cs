@@ -1,9 +1,8 @@
-using System;
 using System.Collections.Generic;
-using Game.Data;
+using Data;
 using UnityEngine;
 
-namespace Game.BasePlace
+namespace BasePlace
 {
     public class EnemySearching : MonoBehaviour
     {
