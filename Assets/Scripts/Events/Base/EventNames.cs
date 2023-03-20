@@ -1,4 +1,6 @@
 ﻿
+using Game;
+
 namespace Events.Base
 {
     public static class EventNames
@@ -7,8 +9,7 @@ namespace Events.Base
         {
             Game.Over,
             Game.Restarted,
-            Enemy.NonLethalDamaged,
-            Enemy.Died,
+            Bullet.Reached
         };
 
         public static class Game
@@ -17,10 +18,9 @@ namespace Events.Base
             public static string Restarted => "restarted";
         }
 
-        public static class Enemy
+        public static class Bullet
         {
-            public static string NonLethalDamaged => "non_lethal_damaged";
-            public static string Died => "died";
+            public static string Reached => "reached";
         }
     }
 }

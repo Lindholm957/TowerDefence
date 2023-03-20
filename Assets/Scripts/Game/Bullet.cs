@@ -1,3 +1,6 @@
+using System;
+using Events.Base;
+using Events.Systems;
 using UnityEngine;
 
 namespace Game
@@ -8,7 +11,6 @@ namespace Game
         private GameObject _target;
         private float _damage;
 
-        public float Damage => _damage;
         public void Init(GameObject target, float damage)
         {
             _target = target;
@@ -19,16 +21,20 @@ namespace Game
 
         private void OnTriggerEnter2D(Collider2D col)
         {
-            if (col.gameObject == _target)
+            if (col.CompareTag("Enemy"))
             {
+                col.GetComponent<Enemy>().TakeDamage(_damage);
                 Destroy(gameObject);
             }
         }
 
         private void Update()
         {
-            float step = speed * Time.deltaTime;
-            transform.position = Vector3.MoveTowards(transform.position, _target.transform.position, step);
+            if (_target != null)
+            {
+                float step = speed * Time.deltaTime;
+                transform.position = Vector3.MoveTowards(transform.position, _target.transform.position, step);   
+            }
         }
         
         private void SetRotationToTarget()
@@ -38,6 +44,11 @@ namespace Game
             var angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
             
             transform.Rotate(0, 0, angle);
+        }
+
+        private void OnDestroy()
+        {
+            GlobalEventSystem.I.SendEvent(EventNames.Bullet.Reached, new GameEventArgs(null));
         }
     }
 }

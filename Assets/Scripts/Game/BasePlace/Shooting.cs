@@ -17,7 +17,7 @@ namespace Game.BasePlace
         {
             _target = target;
             var delay =  (ReloadUpgradeIndex - PlayerData.I.AttackSpeedLvl) / maxReloadSpeed;
-
+            
             StartCoroutine(DelayBeforeShooting(delay));
         }
 
@@ -29,7 +29,7 @@ namespace Game.BasePlace
                 Quaternion.identity, transform.parent);
             
             var damage = minDamage * PlayerData.I.TotalDamageLvl;
-            
+
             bullet.GetComponent<Bullet>().Init(_target, damage);
         }
 

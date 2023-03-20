@@ -29,8 +29,7 @@ namespace Game.BasePlace
 
         private void OnEnable()
         {
-            GlobalEventSystem.I.Subscribe(EventNames.Enemy.NonLethalDamaged, OnNonLethalDamaged);
-            GlobalEventSystem.I.Subscribe(EventNames.Enemy.Died, OnEnemyDied);
+            GlobalEventSystem.I.Subscribe(EventNames.Bullet.Reached, OnBulletReached);
         }
 
         private void Start()
@@ -41,7 +40,7 @@ namespace Game.BasePlace
         private IEnumerator StartSearchEnemy()
         {
             _curState = State.EnemySearching;
-
+            
             yield return new WaitUntil(() => GetTarget() != null);
             
             _target = GetTarget();
@@ -70,20 +69,21 @@ namespace Game.BasePlace
             }
         }
         
-        private void OnNonLethalDamaged(GameEventArgs arg0)
+        private void OnBulletReached(GameEventArgs arg0)
         {
-            Attack();
+            if (_target != null)
+            {
+                Attack();
+            }
+            else
+            {
+                StartCoroutine(StartSearchEnemy());
+            }
         }
-        
-        private void OnEnemyDied(GameEventArgs arg0)
-        {
-            StartCoroutine(StartSearchEnemy());
-        }
-        
+
         private void OnDisable()
         {
-            GlobalEventSystem.I.Unsubscribe(EventNames.Enemy.NonLethalDamaged, OnNonLethalDamaged);
-            GlobalEventSystem.I.Unsubscribe(EventNames.Enemy.Died, OnEnemyDied);
+            GlobalEventSystem.I.Unsubscribe(EventNames.Bullet.Reached, OnBulletReached);
         }
     }
 }
