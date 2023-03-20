@@ -30,10 +30,6 @@ namespace BasePlace
         private void OnEnable()
         {
             GlobalEventSystem.I.Subscribe(EventNames.Bullet.Reached, OnBulletReached);
-        }
-
-        private void Start()
-        {
             StartCoroutine(StartSearchEnemy());
         }
 
@@ -64,8 +60,8 @@ namespace BasePlace
         {
             if (col.CompareTag("Enemy"))
             {
-                Destroy(gameObject);
                 GlobalEventSystem.I.SendEvent(EventNames.Game.Over, new GameEventArgs(null));
+                gameObject.SetActive(false);
             }
         }
         

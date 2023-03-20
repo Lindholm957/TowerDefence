@@ -7,10 +7,11 @@ namespace Game
     public class EnemySpawner : MonoBehaviour
     {
         [SerializeField] private GameObject enemyPrefab;
-        [SerializeField] private RectTransform playground;
+        [SerializeField] private Transform playground;
         [Space]
         [SerializeField] private float repeatRate = 1f;
-        [SerializeField] private float minSpawnDistance = 860f;
+        [SerializeField] private float minSpawnDistance = 40f;
+        [SerializeField] private float maxSpawnDistance = 90f;
 
         private void Awake()
         {
@@ -50,7 +51,7 @@ namespace Game
             
             while (!correctPos)
             {
-                randomPoint = RandomPointInRect(playground);
+                randomPoint = RandomPointInRect(maxSpawnDistance);
                 var distance = Vector2.Distance(Vector2.zero, randomPoint);
                 
                 if (minSpawnDistance < distance)
@@ -58,15 +59,17 @@ namespace Game
                     correctPos = true;
                 }
             }
+
             var enemy = Instantiate(enemyPrefab, randomPoint, Quaternion.identity, playground.transform);
             enemy.transform.localPosition = randomPoint;
         }
 
-        private Vector2 RandomPointInRect(RectTransform rect)
+        private Vector3 RandomPointInRect(float maxValue)
         {
-            return new Vector2(
-                Random.Range(-rect.rect.width/2f, rect.rect.width/2f),
-                Random.Range(-rect.rect.height/2f, rect.rect.height/2f)
+            return new Vector3(
+                Random.Range(-maxValue, maxValue),
+                Random.Range(-maxValue, maxValue),
+                -1f
             );
         }
     }

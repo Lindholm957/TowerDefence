@@ -6,20 +6,16 @@ namespace BasePlace
 {
     public class EnemySearching : MonoBehaviour
     {
-        [SerializeField] private float minAttackDistance = 200f;
+        [SerializeField] private float minAttackDistance = 25f;
         
-        private const float UpgradeIndex = 100f;
+        private const float UpgradeIndex = 20f;
         private Transform _playground;
-
-        private void Awake()
-        {
-            _playground = transform.parent;
-        }
 
         public List<GameObject> GetAllEnemies()
         {
             var objects = new List<GameObject>();
-            foreach (Transform child in _playground)
+            
+            foreach (Transform child in transform.parent)
             {
                 if (child.CompareTag("Enemy"))
                 {

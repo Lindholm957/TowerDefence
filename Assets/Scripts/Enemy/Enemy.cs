@@ -6,8 +6,9 @@ namespace Enemy
 {
     public class Enemy : MonoBehaviour
     {
+        [SerializeField] private float speed;
+
         private float _hp = 30f;
-        private float _speed = 30f;
         private GameObject _target;
 
         private void Awake()
@@ -36,7 +37,7 @@ namespace Enemy
     
         private void Update()
         {
-            float step = _speed * Time.deltaTime;
+            float step = speed * Time.deltaTime;
             transform.position = Vector3.MoveTowards(transform.position, _target.transform.position, step);
         }
     }

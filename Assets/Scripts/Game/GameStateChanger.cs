@@ -7,8 +7,8 @@ namespace Game
     public class GameStateChanger : MonoBehaviour
     {
         [SerializeField] private GameObject gameOverPrefab;
-        [SerializeField] private GameObject basePlacePrefab;
-        [SerializeField] private Transform playground;
+        [SerializeField] private GameObject basePlace;
+        [SerializeField] private Transform UIPlayground;
 
         private GameObject _curGameOverScreen;
 
@@ -21,12 +21,12 @@ namespace Game
         private void OnGameRestarted(GameEventArgs arg0)
         {
             Destroy(_curGameOverScreen);
-            Instantiate(basePlacePrefab, playground);
+            basePlace.SetActive(true);
         }
 
         private void OnGameOver(GameEventArgs arg)
         {
-            _curGameOverScreen = Instantiate(gameOverPrefab, playground);
+            _curGameOverScreen = Instantiate(gameOverPrefab, UIPlayground);
         }
         
         private void OnDisable()
